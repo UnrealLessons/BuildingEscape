@@ -1,0 +1,12 @@
+# UNREAL GENERATED FILES #
+##########################
+*/Binaries
+*/Build
+*/Deriv
+*/Intermediate
+*/Saved
+BuildingEscape/Content/StarterContent/
+
+# VS GENERATED FILES #
+##########################
+*.VC.db
