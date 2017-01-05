@@ -3,7 +3,6 @@
 #include "BuildingEscape.h"
 #include "OpenDoor.h"
 
-
 // Sets default values for this component's properties
 UOpenDoor::UOpenDoor()
 {
@@ -20,19 +19,19 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 
+	Owner = GetOwner();
 	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
 }
 
 void UOpenDoor::OpenDoor()
 {
-	// Find the owning Actor
-	AActor *Owner = GetOwner();
-
-	// Create a rotator
-	FRotator DoorRotation = FRotator(0.0f, 0.0f, 0.0f);
-
 	// Set the door rotation
-	Owner->SetActorRotation(DoorRotation);
+	Owner->SetActorRotation(FRotator(0.f, OpenAngle, 0.f));
+}
+
+void UOpenDoor::CloseDoor()
+{
+	Owner->SetActorRotation(FRotator(0.f, CloseAngle, 0.f));
 }
 
 // Called every frame
@@ -45,6 +44,17 @@ void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompo
 	if (PressurePlate->IsOverlappingActor(ActorThatOpens))
 	{
 		OpenDoor();
+		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
+	}
+
+	/*if (!PressurePlate->IsOverlappingActor(ActorThatOpens))
+	{
+		CloseDoor();
+	}*/
+
+	if (GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay)
+	{
+		CloseDoor();
 	}
 }
 
