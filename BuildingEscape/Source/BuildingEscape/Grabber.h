@@ -22,8 +22,9 @@ public:
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
 private:
-	FVector PlayerVector;
+	FVector PlayerLocationVector, LineTraceEnd;
 	FRotator PlayerRotator;
 
 	FString logVector, logRotator;
+	float Reach = 100.f;
 };
