@@ -5,9 +5,10 @@
 */Deriv
 */Intermediate
 */Saved
-BuildingEscape/Content/StarterContent/
+BuildingEscape/Content/StarterContent
 
 # VS GENERATED FILES #
 ##########################
 *.VC.db
+*.suo
 BuildingEscape/BuildingEscape.VC.VC.opendb
