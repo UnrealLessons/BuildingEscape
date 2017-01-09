@@ -27,4 +27,6 @@ private:
 
 	FString logVector, logRotator;
 	float Reach = 100.f;
+
+	Uhan
 };
