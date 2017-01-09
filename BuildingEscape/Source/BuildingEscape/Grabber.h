@@ -25,8 +25,8 @@ private:
 	FVector PlayerLocationVector, LineTraceEnd;
 	FRotator PlayerRotator;
 
-	FString logVector, logRotator;
+	FString logVector, logRotator, thisOwner;
 	float Reach = 100.f;
 
-	Uhan
+	UPhysicsHandleComponent *physicsHandler = nullptr;
 };
