@@ -21,6 +21,7 @@ void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("Grabber reporting for duty!"));
+	thisOwner = GetOwner()->GetName();
 
 	/// Look for attached Physics Handle
 	physicsHandler = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
@@ -31,10 +32,22 @@ void UGrabber::BeginPlay()
 	else
 	{
 		// Physics handle is missing
-		thisOwner = GetOwner()->GetName();
 		UE_LOG(LogTemp, Error, TEXT("Physics Handler component missing from %s!!!"), *thisOwner)
 	}
 	
+
+	pawnInput = GetOwner()->FindComponentByClass<UInputComponent>();
+	if (pawnInput)
+	{
+		// Input component is found
+		UE_LOG(LogTemp, Warning, TEXT("Input component found!"))
+	}
+	else
+	{
+		// Input component is missing
+		UE_LOG(LogTemp, Error, TEXT("Input component missing from %s!!!"), *thisOwner)
+	}
+
 }
 
 
