@@ -43,6 +43,7 @@ void UGrabber::BeginPlay()
 		UE_LOG(LogTemp, Warning, TEXT("Input component found!"))
 			///Bind the input axis
 			pawnInput->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
+			pawnInput->BindAction("Grab", IE_Released, this, &UGrabber::Release);
 	}
 	else
 	{
@@ -57,6 +58,10 @@ void UGrabber::Grab()
 	UE_LOG(LogTemp, Warning, TEXT("Grabbing!"))
 }
 
+void UGrabber::Release()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Release!"))
+}
 
 // Called every frame
 void UGrabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
