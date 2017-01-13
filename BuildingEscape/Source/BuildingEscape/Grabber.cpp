@@ -41,6 +41,8 @@ void UGrabber::BeginPlay()
 	{
 		// Input component is found
 		UE_LOG(LogTemp, Warning, TEXT("Input component found!"))
+			///Bind the input axis
+			pawnInput->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
 	}
 	else
 	{
@@ -48,6 +50,11 @@ void UGrabber::BeginPlay()
 		UE_LOG(LogTemp, Error, TEXT("Input component missing from %s!!!"), *thisOwner)
 	}
 
+}
+
+void UGrabber::Grab()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Grabbing!"))
 }
 
 
