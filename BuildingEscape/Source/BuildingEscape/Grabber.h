@@ -24,7 +24,6 @@ public:
 private:
 	FVector PlayerLocationVector, LineTraceEnd;
 	FRotator PlayerRotator;
-
 	FString logVector, logRotator, thisOwner;
 	float Reach = 100.f;
 
