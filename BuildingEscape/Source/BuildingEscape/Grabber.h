@@ -21,6 +21,9 @@ public:
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
+	void findPhysicsHandleComponent();
+	void findInputComponent();
+
 private:
 	FVector PlayerLocationVector, LineTraceEnd;
 	FRotator PlayerRotator;
@@ -29,7 +32,7 @@ private:
 	float Reach = 100.f;
 
 	UPhysicsHandleComponent *physicsHandler = nullptr;
-	UInputComponent *pawnInput = nullptr;
+	UInputComponent *inputComponent = nullptr;
 
 	// Ray-cast and grab what's in reach
 	void Grab();
