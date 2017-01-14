@@ -21,9 +21,6 @@ public:
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
-	void findPhysicsHandleComponent();
-	void findInputComponent();
-
 private:
 	FVector PlayerLocationVector, LineTraceEnd;
 	FRotator PlayerRotator;
@@ -39,4 +36,13 @@ private:
 
 	// Release grabbed object
 	void Release();
+
+	// Find (assumed) attached physics handle
+	void findPhysicsHandleComponent();
+
+	// Setup (assumed) attached input component
+	void setupInputComponent();
+
+	// Return hit for first physics body in reach
+	const FHitResult GetFirstPhysicsBodyInReach();
 };
