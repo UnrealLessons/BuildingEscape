@@ -21,10 +21,8 @@ public:
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
-	void GetPlayerLocation();
-
 private:
-	FVector PlayerLocationVector, LineTraceEnd;
+	FVector PlayerLocationVector;
 	FRotator PlayerRotator;
 	FString logVector, logRotator, thisOwner;
 	float Reach = 100.f;
@@ -46,4 +44,10 @@ private:
 
 	// Return hit for first physics body in reach
 	const FHitResult GetFirstPhysicsBodyInReach();
+
+	// Update current start of reach line
+	FVector GetPlayerStart();
+
+	// Updates current end of reach line
+	FVector GetPlayerReach();
 };
