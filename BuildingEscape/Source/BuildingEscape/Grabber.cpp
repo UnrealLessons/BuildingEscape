@@ -85,28 +85,27 @@ void UGrabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 	
+	GetPlayerLocation();
+
+	if (physicsHandler->GrabbedComponent)
+	{
+		physicsHandler->SetTargetLocation(LineTraceEnd);
+	}
+}
+
+void UGrabber::GetPlayerLocation()
+{
 	// Get player viewpoint
 	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
 		OUT PlayerLocationVector,
 		OUT PlayerRotator
 	);
 	LineTraceEnd = PlayerLocationVector + PlayerRotator.Vector() * Reach;
-
-	// If physics handle is attached
-	if (physicsHandler->GrabbedComponent)
-	{
-		// move object this is holding
-		physicsHandler->SetTargetLocation(LineTraceEnd);
-	}
 }
 
 const FHitResult UGrabber::GetFirstPhysicsBodyInReach()
 {
-	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
-		OUT PlayerLocationVector,
-		OUT PlayerRotator
-	);
-	LineTraceEnd = PlayerLocationVector + PlayerRotator.Vector() * Reach;
+	GetPlayerLocation();
 
 	// Setup query parameters
 	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
