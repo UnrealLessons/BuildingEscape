@@ -37,7 +37,13 @@ private:
 	UPROPERTY(EditAnywhere)
 	float DoorCloseDelay = 1.f;
 
+	UPROPERTY(EditAnywhere)
+	float TriggerMass = 50.f;
+
+	// Returns total mass in kg
+	float GetTotalMassOfActorsOnPlate();
+
 	float LastDoorOpenTime;
-	AActor *ActorThatOpens;		// Pawn inherits from actor
 	AActor *Owner;				// Actor who owns door
+
 };
