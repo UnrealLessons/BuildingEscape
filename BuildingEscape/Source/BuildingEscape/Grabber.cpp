@@ -61,6 +61,7 @@ void UGrabber::Grab()
 	/// If hit valid actor, attach a physics handle
 	if (ActorHit)
 	{
+		if (!physicsHandler) { return; }
 		physicsHandler->GrabComponent(
 			ComponentToGrab,
 			NAME_None, // no bones needed
@@ -72,6 +73,7 @@ void UGrabber::Grab()
 
 void UGrabber::Release()
 {
+	if (!physicsHandler) { return; }
 	physicsHandler->ReleaseComponent();
 }
 
@@ -80,6 +82,7 @@ void UGrabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 
+	if (!physicsHandler) { return; }
 	if (physicsHandler->GrabbedComponent)
 	{
 		physicsHandler->SetTargetLocation(GetPlayerReach());
