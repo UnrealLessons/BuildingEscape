@@ -30,7 +30,7 @@ void UGrabber::findPhysicsHandleComponent()
 {
 	/// Look for attached Physics Handle
 	physicsHandler = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
-	if (physicsHandler == nullptr)
+	if (!physicsHandler)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Physics Handler component missing from %s!!!"), *thisOwner)
 	}
