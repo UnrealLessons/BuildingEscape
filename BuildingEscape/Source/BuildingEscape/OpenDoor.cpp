@@ -20,17 +20,20 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 
+	if (Owner == nullptr) { return; }
 	Owner = GetOwner();
 }
 
 void UOpenDoor::OpenDoor()
 {
 	// Set the door rotation
+	if (Owner == nullptr) { return; }
 	Owner->SetActorRotation(FRotator(0.f, OpenAngle, 0.f));
 }
 
 void UOpenDoor::CloseDoor()
 {
+	if (Owner == nullptr) { return; }
 	Owner->SetActorRotation(FRotator(0.f, CloseAngle, 0.f));
 }
 
@@ -59,6 +62,7 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate()
 
 	// Find all overlapping actors
 	TArray<AActor*> OverlappingActors;
+	if (PressurePlate == nullptr) { return TotalMass; }
 	PressurePlate->GetOverlappingActors(OverlappingActors);
 
 	// Iterate through them adding their masses
