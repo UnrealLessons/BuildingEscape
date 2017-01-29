@@ -16,7 +16,6 @@ public:
 	// Sets default values for this component's properties
 	UOpenDoor();
 
-	void OpenDoor();
 	void CloseDoor();
 
 	// Called when the game starts
@@ -26,23 +25,17 @@ public:
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
 	UPROPERTY(BlueprintAssignable)
-		FOnOpenRequest OnOpenRequest;
+		FOnOpenRequest DoorOpen;
+
+	UPROPERTY(BlueprintAssignable)
+		FOnOpenRequest DoorClose;
 
 private:
-	UPROPERTY(EditAnywhere)
-	float OpenAngle;
-
-	UPROPERTY(EditAnywhere)
-	float CloseAngle;
-		
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume *PressurePlate = nullptr;
 
 	UPROPERTY(EditAnywhere)
-	float DoorCloseDelay = 1.f;
-
-	UPROPERTY(EditAnywhere)
-	float TriggerMass = 50.f;
+	float TriggerMass = 30.f;
 
 	// Returns total mass in kg
 	float GetTotalMassOfActorsOnPlate();
